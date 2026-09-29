@@ -1,0 +1,27 @@
+/* 404 page. Colors, fonts and dark mode come from App.css */
+
+.nf-page { max-width: 1180px; min-height: 100vh; margin: 0 auto; padding: 36px 40px 20px; display: flex; flex-direction: column; }
+
+.nf-top { padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.nf-name { font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif; font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; }
+
+.nf-main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 56px 0; animation: rise .6s cubic-bezier(.2, .7, .2, 1) both; }
+
+.nf-code { margin: 0 0 8px; font-family: "Bricolage Grotesque", sans-serif; font-weight: 800; font-size: clamp(110px, 24vw, 260px); line-height: .85; letter-spacing: -.05em; color: var(--green); }
+.nf-main h1 { font-family: "Bricolage Grotesque", sans-serif; font-size: clamp(30px, 4vw, 44px); letter-spacing: -.025em; line-height: 1.1; margin: 0 0 16px; }
+.nf-text { max-width: 34em; font-size: 20px; line-height: 1.6; color: var(--muted); margin: 0 0 32px; }
+.nf-text code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .85em; background: var(--panel); color: var(--ink); padding: 2px 7px; border-radius: 3px; overflow-wrap: anywhere; }
+
+.nf-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.nf-btn { font: 500 16px "Bricolage Grotesque", sans-serif; color: var(--ink); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 10px 22px; cursor: pointer; text-decoration: none; transition: transform .2s ease, border-color .2s ease, background-color .2s ease, color .2s ease; }
+.nf-btn:hover { transform: translateY(-2px); border-color: var(--brass); }
+.nf-btn.primary { background: var(--green); border-color: var(--green); color: var(--bg); }
+.nf-btn.primary:hover { border-color: var(--brass); background: var(--brass); color: var(--bg); }
+.nf-btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+.nf-foot { padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+
+@media (max-width: 900px) {
+  .nf-page { padding: 28px 22px 20px; }
+  .nf-main { padding: 40px 0; }
+}

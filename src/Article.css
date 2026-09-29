@@ -1,0 +1,99 @@
+/* Article page. Colors, fonts and dark mode come from App.css */
+
+.art-page { max-width: 1180px; min-height: 100vh; margin: 0 auto; padding: 36px 40px 20px; display: flex; flex-direction: column; }
+
+.art-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--line); font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif; }
+.art-back { font-weight: 500; font-size: 16px; }
+.art-name { font-weight: 700; font-size: 18px; }
+
+/* Two columns: small info rail on the left, reading column on the right */
+.art-layout { flex: 1; display: grid; grid-template-columns: 200px minmax(0, 700px); gap: 64px; padding: 64px 0 48px; animation: rise .6s cubic-bezier(.2, .7, .2, 1) both; }
+
+.art-rail dl { position: sticky; top: 32px; margin: 0; font-family: "Bricolage Grotesque", sans-serif; }
+.art-rail dt { color: var(--muted); font-size: 14px; }
+.art-rail dd { margin: 0 0 18px; font-size: 16px; font-weight: 500; }
+
+.art h1 { font-size: clamp(36px, 5.4vw, 60px); line-height: 1.02; letter-spacing: -.03em; font-weight: 800; margin: 0 0 20px; }
+.art-summary { font-size: 22px; line-height: 1.45; color: var(--muted); margin: 0 0 36px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+
+/* Article text. Write with plain p, h2, h3, ul, ol, pre, blockquote, .callout */
+.art-body { font-size: 19px; line-height: 1.7; }
+.art-body p { margin: 0 0 20px; }
+.art-body h2 { font-family: "Bricolage Grotesque", sans-serif; font-size: 28px; letter-spacing: -.02em; line-height: 1.2; margin: 48px 0 14px; }
+.art-body h3 { font-family: "Bricolage Grotesque", sans-serif; font-size: 21px; margin: 32px 0 10px; }
+.art-body ul, .art-body ol { margin: 0 0 20px; padding-left: 26px; }
+.art-body li { margin-bottom: 8px; }
+.art-body li::marker { color: var(--brass); }
+.art-body a { text-underline-offset: 3px; }
+.art-body img { display: block; max-width: 100%; height: auto; border-radius: 4px; margin: 28px 0; }
+.art-body figure { margin: 32px 0; }
+.art-body figure img { margin: 0; width: 100%; }
+.art-body figure video { display: block; width: 100%; border-radius: 4px; background: var(--panel); }
+.video-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: var(--panel); }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.art-body figcaption { margin-top: 8px; color: var(--muted); font-size: 15px; line-height: 1.4; }
+.art-body hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+
+.art-body code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .86em; background: var(--panel); padding: 2px 6px; border-radius: 3px; }
+.art-body pre { background: var(--panel); border-left: 2px solid var(--brass); border-radius: 4px; padding: 16px 18px; margin: 0 0 24px; overflow-x: auto; line-height: 1.55; }
+.art-body pre code { background: none; padding: 0; font-size: 15px; }
+
+.art-body blockquote { margin: 32px 0; padding: 4px 0 4px 20px; border-left: 2px solid var(--green); font-size: 22px; line-height: 1.45; }
+
+.callout { background: var(--panel); border-radius: 4px; padding: 14px 18px; margin: 0 0 24px; font-size: 17px; line-height: 1.55; }
+.callout b { display: block; font-family: "Bricolage Grotesque", sans-serif; margin-bottom: 2px; }
+
+.art-foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+
+.art-missing { flex: 1; max-width: 600px; padding-top: 72px; }
+.art-missing h1 { font-family: "Bricolage Grotesque", sans-serif; font-size: 40px; margin: 0 0 12px; }
+
+/* Link hover matches the home page */
+.art-back, .art-foot a { text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .25s ease, color .2s ease; }
+.art-back:hover, .art-foot a:hover { background-size: 100% 1px; color: var(--brass); }
+
+@media (max-width: 900px) {
+  .art-page { padding: 28px 22px 20px; }
+  .art-layout { grid-template-columns: 1fr; gap: 24px; padding: 36px 0 32px; }
+  .art-rail dl { position: static; display: flex; gap: 28px; }
+  .art-rail dd { margin-bottom: 0; }
+  .art-body { font-size: 18px; }
+}
+
+/* ---------- Typography upgrade ---------- */
+
+.art-body {
+  font-size: clamp(18px, 0.35vw + 16.5px, 21px);
+  line-height: 1.75;
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  font-feature-settings: "kern", "liga", "onum";
+  color: color-mix(in srgb, var(--ink) 92%, var(--bg));
+  text-wrap: pretty;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+.art-body p { margin: 0 0 1.3em; }
+
+/* Opening paragraph is slightly larger, like a magazine intro */
+.art-body > p:first-child { font-size: 1.14em; line-height: 1.62; color: var(--ink); }
+
+/* Headings */
+.art-body h2 { font-size: clamp(26px, 2vw + 18px, 34px); font-weight: 700; letter-spacing: -.025em; line-height: 1.15; margin: 2.1em 0 .55em; text-wrap: balance; }
+.art-body h3 { font-size: 22px; font-weight: 600; letter-spacing: -.01em; line-height: 1.25; margin: 1.8em 0 .5em; text-wrap: balance; }
+
+/* Emphasis and links */
+.art-body strong { font-weight: 600; color: var(--ink); }
+.art-body em { font-style: italic; }
+.art-body a { color: var(--green); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.art-body a:hover { color: var(--brass); }
+
+/* Title block */
+.art h1 { text-wrap: balance; }
+.art-summary { font-style: italic; font-size: clamp(20px, 0.8vw + 17px, 24px); line-height: 1.45; }
+
+/* Captions and quotes */
+.art-body figcaption { font-style: italic; }
+.art-body blockquote { font-style: italic; }
+
+::selection { background: color-mix(in srgb, var(--brass) 30%, transparent); }

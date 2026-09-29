@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap");
+
+:root {
+  --bg: #EEF1EC;
+  --ink: #14201B;
+  --muted: #5E6B64;
+  --line: #CBD3CC;
+  --green: #0F3D2E;
+  --brass: #9A6B1E;
+  --panel: #E3E8E2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0E1512;
+    --ink: #E6EBE6;
+    --muted: #93A199;
+    --line: #26332C;
+    --green: #7FCFA8;
+    --brass: #D6A651;
+    --panel: #141E19;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: black;
+  color: var(--ink);
+  font: 17px/1.5 Newsreader, Georgia, serif;
+}
+
+.page { max-width: 1180px; min-height: 100vh; margin: 0 auto; padding: 36px 40px 20px; display: flex; flex-direction: column; }
+
+h1, h2, h3, .tabs { font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif; }
+p { margin: 0 0 12px; }
+a { color: var(--green); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; border-radius: 2px; }
+
+/* The whole first screen is one board */
+.board {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 5fr 4fr 3fr;
+  grid-template-areas:
+    "intro hood     now"
+    "projects projects articles";
+  gap: 0 44px;
+}
+.intro    { grid-area: intro; }
+.hood     { grid-area: hood; }
+.now      { grid-area: now; }
+.projects { grid-area: projects; }
+.articles    { grid-area: articles; }
+
+.board > section { padding-top: 22px; }
+.board > .intro { padding-top: 0; }
+.board > .projects, .board > .articles { border-top: 1px solid var(--line); margin-top: 28px; }
+.board > .hood, .board > .now { border-left: 1px solid var(--line); padding-left: 32px; }
+
+/* Name stays big */
+h1 { font-size: clamp(56px, 7.4vw, 96px); line-height: .96; letter-spacing: -.035em; margin: 0 0 24px; font-weight: 800; }
+.lede { font-size: 21px; line-height: 1.45; max-width: 26em; }
+.links { display: flex; gap: 20px; flex-wrap: wrap; font-family: "Bricolage Grotesque", sans-serif; font-weight: 500; font-size: 16px; }
+
+.sec-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+h2 { font-size: 20px; letter-spacing: -.01em; margin: 0; }
+
+/* Tabs */
+.tabs { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 2px; }
+.tabs button { font: inherit; font-size: 14px; background: none; border: 0; color: var(--muted); padding: 4px 13px; border-radius: 999px; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--green); color: var(--bg); }
+
+/* Under the hood */
+.pair { border-left: 2px solid var(--brass); padding: 0 0 0 14px; margin: 0 0 16px; font-size: 16px; line-height: 1.45; }
+.pair b { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; }
+.pair span { display: block; color: var(--muted); font-size: 15px; margin-top: 2px; }
+
+/* All tabs share one cell, so switching never changes the height */
+.stack { display: grid; }
+.panel { grid-area: 1 / 1; visibility: hidden; }
+.panel.on { visibility: visible; }
+
+/* Lists */
+ul.list { list-style: none; padding: 0; margin: 0; }
+ul.list li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 16px; line-height: 1.4; }
+ul.list li small { color: var(--muted); font-size: 14px; white-space: nowrap; padding-top: 2px; }
+
+/* Projects */
+.proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.proj { border-top: 1px solid var(--ink); padding-top: 12px; }
+.proj h3 { font-size: 18px; margin: 0 0 6px; }
+.proj p { color: var(--muted); font-size: 15.5px; line-height: 1.45; margin: 0; }
+.repo { display: inline-block; margin-top: 10px; font: 500 14px "Bricolage Grotesque", sans-serif; }
+.tag { font: 500 12px "Bricolage Grotesque", sans-serif; color: var(--brass); border: 1px solid var(--brass); border-radius: 999px; padding: 0 8px; margin-left: 8px; vertical-align: middle; }
+
+footer { padding-top: 16px; color: var(--muted); font-size: 15px; }
+
+/* Tablets and phones: stack */
+@media (max-width: 960px) {
+  .page { padding: 28px 22px 20px; }
+  .board { grid-template-columns: 1fr; grid-template-areas: "intro" "hood" "now" "projects" "articles"; }
+  .board > .hood, .board > .now { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); margin-top: 28px; }
+  .board > section { padding-top: 22px; }
+  .board > .intro { padding-top: 0; }
+  .proj-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* ---------- Motion ---------- */
+
+/* One entrance on load: each block rises in, staggered */
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.board > section { animation: rise .6s cubic-bezier(.2, .7, .2, 1) both; }
+.board > .hood     { animation-delay: .08s; }
+.board > .now      { animation-delay: .16s; }
+.board > .projects { animation-delay: .24s; }
+.board > .articles    { animation-delay: .32s; }
+
+/* Links: underline draws in from the left */
+.links a, .repo, footer a {
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size .25s ease, color .2s ease;
+}
+.links a:hover, .repo:hover, footer a:hover { background-size: 100% 1px; color: var(--brass); }
+
+/* Tabs */
+.tabs button { transition: background-color .2s ease, color .2s ease; }
+.tabs button:not([aria-selected="true"]):hover { color: var(--ink); }
+
+/* Switching tabs cross-fades instead of snapping */
+.panel { opacity: 0; transition: opacity .3s ease, visibility 0s linear .3s; }
+.panel.on { opacity: 1; transition: opacity .3s ease .05s, visibility 0s; }
+
+/* Under the hood entries: accent bar turns green and text nudges in */
+.pair { transition: border-color .2s ease, padding-left .2s ease; }
+.pair:hover { border-left-color: var(--green); padding-left: 18px; }
+
+/* Project blocks lift and the rule turns brass */
+.proj { transition: transform .25s ease, border-color .25s ease; }
+.proj:hover { transform: translateY(-3px); border-top-color: var(--brass); }
+.proj h3 { transition: color .2s ease; }
+.proj:hover h3 { color: var(--green); }
+
+/* List rows slide slightly on hover */
+ul.list li { transition: padding-left .2s ease, border-color .2s ease; }
+ul.list li:hover { padding-left: 8px; border-bottom-color: var(--brass); }
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+
+/* Article rows on the home page */
+.row { display: flex; justify-content: space-between; gap: 12px; width: 100%; color: var(--ink); text-decoration: none; }
+.row small { color: var(--muted); font-size: 14px; white-space: nowrap; padding-top: 2px; }
+.row:hover span { color: var(--green); }
+.row.muted { color: var(--muted); }
+
+/* Hide the page scrollbar on every page (scrolling with wheel, touch and keys still works) */
+html { scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; height: 0; }
