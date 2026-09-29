@@ -3,7 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import "./App.css";      // shared colors, fonts and dark mode
 import "./Article.css";
 import { ARTICLES } from "./Articles";
-import NotFound from "./Notfound";
+import NotFound from "./NotFound";
+
 
 // Accepts a full YouTube link or just the video id
 function youtubeId(input: string): string | null {
